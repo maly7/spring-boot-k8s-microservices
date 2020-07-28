@@ -1,3 +1,5 @@
+import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
+
 plugins {
     kotlin("jvm")
     id("org.jetbrains.kotlin.plugin.spring")
@@ -14,4 +16,8 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+}
+
+tasks.getByName<BootBuildImage>("bootBuildImage") {
+    imageName = "com.github.maly7/microservices/${project.name}:latest"
 }

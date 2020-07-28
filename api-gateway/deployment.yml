@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway-deployment
+  labels:
+    app: api-gateway
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: api-gateway
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+    spec:
+      containers:
+        - name: api-gateway
+          image: com.github.maly7/microservices/api-gateway:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              port: 8080
+              path: /actuator/health
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /actuator/health
+            initialDelaySeconds: 5
+            periodSeconds: 5
