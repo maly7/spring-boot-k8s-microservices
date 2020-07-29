@@ -6,6 +6,8 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint") version "9.3.0" apply false
     id("org.jetbrains.kotlin.plugin.spring") version "1.3.72" apply false
     id("org.springframework.boot") version "2.3.2.RELEASE" apply false
+    id ("com.moowork.node") version "1.3.1" apply false
+    id ("com.bmuschko.docker-remote-api") version "6.6.0" apply false
     id("io.spring.dependency-management") version "1.0.9.RELEASE"
 }
 
