@@ -3,13 +3,13 @@ kind: Ingress
 metadata:
   name: test-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   rules:
     - host: localhost
       http:
         paths:
-          - path: /
+          - path: /api(/|$)(.*)
             backend:
               serviceName: api-gateway
               servicePort: 80
