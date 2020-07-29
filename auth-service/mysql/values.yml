@@ -1,0 +1,2 @@
+mysqlUser: auth-service
+mysqlDatabase: auth-service

@@ -10,10 +10,12 @@ dependencies {
     implementation(kotlin("stdlib"))
 
     implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
+    implementation("com.auth0:java-jwt:3.10.3")
 
     implementation("org.flywaydb:flyway-core")
-    runtimeOnly("org.postgresql:postgresql")
+    runtimeOnly("mysql:mysql-connector-java")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
@@ -21,7 +23,7 @@ dependencies {
     testImplementation("com.github.javafaker:javafaker:1.0.2")
 
     testImplementation("org.testcontainers:testcontainers:1.14.3")
-    testImplementation("org.testcontainers:postgresql:1.14.3")
+    testImplementation("org.testcontainers:mysql:1.14.3")
 }
 
 tasks.getByName<BootBuildImage>("bootBuildImage") {
