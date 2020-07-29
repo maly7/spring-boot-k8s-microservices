@@ -116,9 +116,42 @@ To create this resource run:
 
 This definition assumes the host `localhost` but can be changed to whatever hostname used for the cluster. Also note that `serviceName` and `servicePort` should match their respective values from the service definition. If running a local kubernetes cluster, your app could now be accessed from `http://localhost`. 
 
-## Loading Configuration
-
-## Loading Secrets
-
 ## Connecting to a Database
+Setting up a database in kubernetes is pretty cumbersome, fortunately your app can use helm to take care of most of the difficult  work. To get mysql up and running in kubernetes, install  [helm](https://helm.sh/) (`brew install helm`), then run the command `helm install release-name -f values.yml stable/mysql` where `release-name` is the name given to most of the resources within kubernetes so use something you'll be  able to remember.  An example `values.yml` for this chart would look like:
 
+```yaml
+mysqlUser: app-name
+mysqlDatabase: app-name
+```
+
+This will instruct the chart to create a database and non-root user for the application. 
+
+To connect the application to mysql, setup the application properties:
+```yaml
+spring:
+  application:
+    name: app-name
+  datasource:
+    url: ${DATASOURCE_URL}
+    username: app-name
+    password: ${DATASOURCE_PASSWORD}
+```
+
+The deployment for the application can then be updated to load the two necessary environment variables:
+```yaml
+containers:
+- name: app-name
+  image: image_name
+  imagePullPolicy: Never
+  ports:
+    - containerPort: 8080
+  env:
+    - name: DATASOURCE_URL
+      value: "jdbc:mysql://mysql-release-name.default.svc.cluster.local:3306/dbName"
+    - name: DATASOURCE_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          key: mysql-password
+          name: mysql-release-name
+```
+This example shows two ways of providing environment variables to containers. The first is simply by name and value.  The second uses a secret. In this case `mysql-release-name` is a reference to the release name given to the helm chart installation. The secret and key were created when installing the chart. In the datasource url, `dbName` is whatever name was provided for the database in the `values.yml`. 
