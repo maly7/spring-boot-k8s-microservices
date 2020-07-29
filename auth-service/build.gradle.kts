@@ -12,6 +12,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
+    implementation("org.springframework.cloud:spring-cloud-kubernetes-discovery")
+
     implementation("com.auth0:java-jwt:3.10.3")
 
     implementation("org.flywaydb:flyway-core")

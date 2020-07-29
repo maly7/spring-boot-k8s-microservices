@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auth-service-deployment
+  name: auth-service
   labels:
     app: auth-service
 spec:
@@ -32,11 +32,11 @@ spec:
             httpGet:
               port: 8080
               path: /actuator/health
-            initialDelaySeconds: 5
-            periodSeconds: 5
+            initialDelaySeconds: 20
+            periodSeconds: 60
           readinessProbe:
             httpGet:
               port: 8080
               path: /actuator/health
-            initialDelaySeconds: 5
-            periodSeconds: 5
+            initialDelaySeconds: 20
+            periodSeconds: 60

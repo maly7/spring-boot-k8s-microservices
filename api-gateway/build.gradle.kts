@@ -10,6 +10,8 @@ dependencies {
     implementation(kotlin("stdlib"))
 
     implementation("org.springframework.cloud:spring-cloud-starter-gateway")
+    implementation("org.springframework.cloud:spring-cloud-kubernetes-discovery")
+    implementation("org.springframework.cloud:spring-cloud-kubernetes-config")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")

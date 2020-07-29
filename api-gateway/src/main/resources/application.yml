@@ -1,5 +1,30 @@
+spring:
+  application.name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          url-expression: "'http://'+serviceId"
+          lower-case-service-id: true
+    kubernetes:
+      reload:
+        enabled: true
+        mode: polling
+        period: 5000
+      discovery:
+        service-labels:
+          gateway: "true"
+
 management:
   endpoints:
     web:
       exposure:
-        include: health, info, gateway
+        include: '*'
+  endpoint:
+    health:
+      enabled: true
+    restart:
+      enabled: true
+    info:
+      enabled: true
