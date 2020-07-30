@@ -1,0 +1,3 @@
+auth:
+  username: chat-service
+  database: chat-service

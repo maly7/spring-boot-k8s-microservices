@@ -17,7 +17,12 @@
 1. create auth-service
   1. install mysql helm chart: `helm install auth-mysql -f auth-service/mysql/values.yml stable/mysql`
   1. create deployment `kubectl apply -f auth-service/deployment.yml` 
+  1. create service `kubectl apply -f auth-service/service.yml` 
 1. create the frontend
   1. create the deployment `kubectl apply -f frontend/deployment.yml`
   1. create the service `kubectl apply -f frontend/service.yml`
   1. expose with ingress `kubect apply -f ingress/local-frontend-ingress.yml`
+1. create chat-service
+  1. install the mongodb helm chat `helm install chat -f chat-service/mongodb/values.yml bitnami/mongodb`
+  1. create deployment `kubectl apply -f chat-service/deployment.yml` 
+  1. create service `kubectl apply -f chat-service/service.yml` 
