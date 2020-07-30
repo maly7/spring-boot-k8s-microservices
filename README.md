@@ -1,6 +1,6 @@
 # spring-boot-k8s-microservices
 
-## Pre-requisites
+## Prerequisites
 * Install Helm `brew install helm`
 * 
 
