@@ -19,3 +19,5 @@ jobs:
         run: chmod +x gradlew
       - name: Build with Gradle
         run: ./gradlew build
+      - name: Build frontend
+        run: ./gradlew f:yarn_install f:yarn_test-ci f:yarn_build
